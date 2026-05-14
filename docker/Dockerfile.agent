@@ -1,11 +1,14 @@
-FROM python:3.11-slim
+FROM ghcr.io/astral-sh/uv:python3.11-alpine
+
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    PYTHONUNBUFFERED=1
+
 WORKDIR /app
 
-COPY apps/demo/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY apps/demo/pyproject.toml apps/demo/uv.lock ./
+RUN uv sync --frozen --no-cache
 
 COPY apps/demo/src/simple_agent.py .
 
-ENV PYTHONUNBUFFERED=1
-
-CMD ["python", "simple_agent.py", "--text"]
+CMD ["uv", "run", "python", "simple_agent.py", "--text"]

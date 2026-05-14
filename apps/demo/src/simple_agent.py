@@ -31,8 +31,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()
 
-# ─── TurnContext stub (replace with real VoiceContext once NeMo is set up) ────
-
 @dataclass
 class Transcription:
     text: str
@@ -88,8 +86,6 @@ class TurnContext:
                 parts.append(f"Entities: {json.dumps(self.intent.entities)}")
         return "\n".join(parts)
 
-
-# ─── Audio / STT (stub — swap with real NeMo engine) ─────────────────────────
 
 def perceive_from_text(text: str) -> TurnContext:
     """Simulate a TurnContext from raw text (for testing without audio)."""
