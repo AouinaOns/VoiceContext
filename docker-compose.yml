@@ -1,23 +1,23 @@
 services:
   voicecontext:
     build:
-      context: ..
+      context: .
       dockerfile: docker/Dockerfile
     ports:
       - "3000:3000"
     env_file:
-      - ../.env
+      - .env
     depends_on:
       - redis
 
   agent:
     build:
-      context: ..
+      context: .
       dockerfile: docker/Dockerfile.agent
     stdin_open: true
     tty: true
     env_file:
-      - ../.env
+      - .env
 
   redis:
     image: redis:7-alpine
