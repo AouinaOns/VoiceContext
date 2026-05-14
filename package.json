@@ -1,0 +1,24 @@
+{
+  "name": "voicecontext",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Contextual Speech API for Voice Agents",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "mcp:stdio": "node packages/mcp-server/dist/transports/stdio.js",
+    "mcp:http": "node packages/mcp-server/dist/transports/http.js"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0",
+    "prettier": "^3.2.0",
+    "@types/node": "^20.0.0"
+  }
+}
