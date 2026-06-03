@@ -93,4 +93,4 @@ uv run src/simple_agent.py
 
 ## License
 
-Made with &lt;3 — do whatever you want with it.
+**Made with ❤️, do whatever you want with it.
