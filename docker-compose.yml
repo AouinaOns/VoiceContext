@@ -39,5 +39,27 @@ services:
     volumes:
       - redis-data:/data
 
+  nemo-test:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.nemo
+    # Default: generates a synthetic tone (no audio file needed).
+    # Override with: docker compose run nemo-test --file /audio/yourfile.wav
+    command: ["--chunk-ms", "160"]
+    volumes:
+      # Mount a local folder so you can pass real audio files:
+      #   mkdir audio && cp yourfile.wav audio/
+      #   docker compose run nemo-test --file /audio/yourfile.wav
+      - ./audio:/audio
+    # GPU passthrough — Linux + nvidia-container-toolkit only.
+    # Delete the deploy block when running on macOS (CPU fallback is used).
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
 volumes:
   redis-data:

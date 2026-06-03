@@ -1,0 +1,13 @@
+FROM nvcr.io/nvidia/nemo:latest
+
+ENV PYTHONUNBUFFERED=1 \
+    PYTORCH_ENABLE_MPS_FALLBACK=1
+
+WORKDIR /app
+
+# soundfile and librosa are not always bundled in the NeMo image
+RUN pip install --no-cache-dir soundfile librosa
+
+COPY apps/demo/src/test_nemo_streaming.py .
+
+ENTRYPOINT ["python", "test_nemo_streaming.py"]
