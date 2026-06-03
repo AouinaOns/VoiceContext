@@ -124,7 +124,7 @@ def perceive_from_text(text: str) -> TurnContext:
 
 def perceive_from_audio(audio_path: str) -> TurnContext:
     """
-    Real NeMo-based perception. Replace stub with actual VoiceContext engine.
+    Real NeMo-based perception. Repla   ce stub with actual VoiceContext engine.
     This will call: NeMo FastConformer (STT) + SpeechBrain (emotion) + paralinguistics.
     """
     try:
